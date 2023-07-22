@@ -30,8 +30,20 @@ function runGame(gameType){
 function aswerCheck(){
 
 }
+/**
+ * Function obtains operands and operator from DOM
+ * calculates the correct answer using DOM values
+ */
 function calculateCorrectAnswer(){
-
+  operand1=parseInt(document.getElementById('operand-1').innerText);
+  operand2=parseint(document.getElementById('operand-2').innerText);
+  operator=document.getElementById('operator').innerText;
+  if (operator==='+'){
+    return [operand1+operand2,"addition"];
+  } else{
+    alert('Unimplemented operator');
+    throw `Operator ${operator} unknown, abort game`;
+  }
 }
 function incrementScore(){
 
