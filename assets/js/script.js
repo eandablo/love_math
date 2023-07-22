@@ -39,8 +39,10 @@ function answerCheck(){
     let isCorrect = (userAnswer === calculatedAnswer[0]);
     if (isCorrect){
         alert('Congratulations, your asnwer is correct');
+        incrementScore();
     } else{
         alert(`Your answer ${userAnswer}, the correct answer is ${calculatedAnswer[0]}`);
+        incrementWrongAnswer();
     }
     runGame(calculatedAnswer[1]);
 }
@@ -59,11 +61,21 @@ function calculateCorrectAnswer(){
     throw `Operator ${operator} unknown, abort game`;
   }
 }
+/**
+ * Obtains score values from DOM element
+ * increments the value by one if the answer is correct
+ */
 function incrementScore(){
-
+  let score=parseInt(document.getElementById('score').innerText);
+  document.getElementById('score').textContent=++score;
 }
+/**
+ * Obtains incorrect answers from DOM element
+ * increments the value by one if the answer is incorrect
+ */
 function incrementWrongAnswer(){
-
+    let score = parseInt(document.getElementById('incorrect').innerText);
+    document.getElementById('incorrect').textContent = ++score;
 }
 function displayAdditionQuestion(operand1,operand2){
     document.getElementById('operand-1').textContent=operand1;
