@@ -7,11 +7,10 @@ document.addEventListener('DOMContentLoaded',function (){
         } else{
             let gameType=this.getAttribute('data-type');
             runGame(gameType);
-            alert(`you clicked a button ${gameType}`);
         }
     });
   }
-  runGame("addition");
+  runGame(gameType);
 }
 );
 /**
@@ -23,7 +22,14 @@ function runGame(gameType){
   let num2 = Math.floor(Math.random() * 25 + 1);
   if (gameType==="addition") {
     displayAdditionQuestion(num1,num2);
-  } else {
+  } else if (gameType === "substract") {
+      alert(`you clicked a button ${gameType}`);
+      displaySubstractQuestion(num1, num2);
+  } else if (gameType === "multiply") {
+      displayMultiplyQuestion(num1, num2);
+  } else if (gameType === "division") {
+      displayDivisionQuestion(num1, num2);
+  }else {
     alert("Type of game unknown");
     throw 'Unknown game type, Aborting';
   }
@@ -56,7 +62,13 @@ function calculateCorrectAnswer(){
   let operator=document.getElementById('operator').innerText;
   if (operator==='+'){
     return [operand1+operand2,"addition"];
-  } else{
+  } else if (operator === '-'){
+    return [operand1-operand2,"substract"];
+  } else if (operator === '*'){
+      return [operand1 * operand2,"multiply"];
+  } else if (operator === '/') {
+      return [operand1 / operand2, "division"];
+  }else{
     alert('Unimplemented operator');
     throw `Operator ${operator} unknown, abort game`;
   }
@@ -77,14 +89,35 @@ function incrementWrongAnswer(){
     let score = parseInt(document.getElementById('incorrect').innerText);
     document.getElementById('incorrect').textContent = ++score;
 }
+/**
+ * writes + operator and operands to the DOM
+ */
 function displayAdditionQuestion(operand1,operand2){
     document.getElementById('operand-1').textContent=operand1;
     document.getElementById('operand-2').textContent=operand2;
     document.getElementById('operator').textContent='+';
 }
-function displaySubstractQuestion() {
-
+/**
+ * writes - operator and operands to the DOM
+ */
+function displaySubstractQuestion(operand1,operand2) {
+    document.getElementById('operand-1').textContent = operand1;
+    document.getElementById('operand-2').textContent = operand2;
+    document.getElementById('operator').textContent = '-';
 }
-function displayMultiplyQuestion() {
-
+/**
+ * writes * operator and operands to the DOM
+ */
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById('operand-1').textContent = operand1;
+    document.getElementById('operand-2').textContent = operand2;
+    document.getElementById('operator').textContent = '*';
+}
+/**
+ * writes / operator and operands to the DOM
+ */
+function displayDivisionQuestion(operand1, operand2) {
+    document.getElementById('operand-1').textContent = operand1;
+    document.getElementById('operand-2').textContent = operand2;
+    document.getElementById('operator').textContent = '/';
 }
